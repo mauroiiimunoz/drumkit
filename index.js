@@ -4,14 +4,16 @@ for(let x = 0; x < numberOfButtons ;x++){
 	
 	document.querySelectorAll(`.drum`)[x].addEventListener(`click`, (keypressed)=> {
 		
-		keypressed = this.document.querySelectorAll(`.drum`)[x].innerHTML;
+		keypressed = this.document.querySelectorAll(`.drum`)[x].textContent;
 		play(keypressed);
+		buttonAnimation(keypressed)
 		console.log(`${keypressed} is clicked`);
 
 	})}
 
 	document.addEventListener("keydown",(keypressed)=>{
 		play(keypressed.key);
+		buttonAnimation(keypressed.key)
 		console.log(`${keypressed.key} key is pressed`)
 	})
 
@@ -49,6 +51,10 @@ for(let x = 0; x < numberOfButtons ;x++){
 		}
 	}
 	
-		
-	
 
+function buttonAnimation (currentkey){
+let activebutton = document.querySelector("." + currentkey);
+activebutton.classList.add(`pressed`)
+setTimeout(function(){activebutton.classList.remove(`pressed`)},100)
+
+}		
